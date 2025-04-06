@@ -612,11 +612,27 @@ button:focus-visible {
 }
 
 .icon-container {
-  transition: transform 0.3s ease;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.icon-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  z-index: -1;
 }
 
 .icon-container:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.icon-container:hover::before {
+  opacity: 0.2;
 }
 
 /* Dark mode adjustments */
@@ -908,6 +924,7 @@ button:focus-visible {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .contact-link::before {
@@ -940,24 +957,60 @@ button:focus-visible {
   transform: translateY(-2px);
 }
 
+.contact-link::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.contact-link:hover::after {
+  opacity: 0.3;
+}
+
 .contact-item {
   position: relative;
   padding: 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
+  background: rgba(var(--primary-rgb), 0.02);
+  border: 1px solid rgba(var(--primary-rgb), 0.05);
 }
 
 .contact-item:hover {
   background: rgba(var(--primary-rgb), 0.05);
   transform: translateX(5px);
+  border-color: rgba(var(--primary-rgb), 0.1);
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.1);
 }
 
 .contact-item h4 {
   transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.contact-item h4::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  transition: width 0.3s ease;
 }
 
 .contact-item:hover h4 {
   color: var(--primary);
+}
+
+.contact-item:hover h4::after {
+  width: 100%;
 }
 
 @keyframes contactItemAppear {
@@ -983,8 +1036,16 @@ button:focus-visible {
 /* Dark mode adjustments */
 .dark .contact-link {
   background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .contact-item {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 .dark .contact-item:hover {
   background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }

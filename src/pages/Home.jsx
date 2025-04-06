@@ -506,9 +506,11 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="section-container relative">
+        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }}></div>
           <div className="absolute bottom-1/4 right-1/4 w-40 sm:w-60 md:w-80 h-40 sm:h-60 md:h-80 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '12s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '15s' }}></div>
         </div>
 
         <div className="animate-fade-in relative z-10">
@@ -521,76 +523,110 @@ export default function Home() {
 
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
             <div className="space-y-6">
-              <div className="card p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center md:text-left">Let's Connect</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-6 text-center md:text-left">
-                  I'm always interested in hearing about new projects and opportunities.
-                  Feel free to reach out through any of the following channels.
-                </p>
+              <div className="card p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-bl-full opacity-50"></div>
+                <div className="relative z-10">
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center md:text-left flex items-center">
+                    <span className="icon-container w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                      </svg>
+                    </span>
+                    Let's Connect
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-6 text-center md:text-left">
+                    I'm always interested in hearing about new projects and opportunities.
+                    Feel free to reach out through any of the following channels.
+                  </p>
 
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                  {socialLinks.map((link, index) => {
-                    const Icon = link.icon;
-                    return (
-                      <a
-                        key={link.name}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`contact-link flex items-center space-x-2 px-4 py-2 rounded-lg bg-gray-50 dark:bg-dark-light hover:bg-primary hover:text-white transition-all duration-300 ${link.color} animate-fade-in`}
-                        style={{ animationDelay: `${index * 0.1}s` }}
-                      >
-                        <Icon className="w-5 h-5" />
-                        <span className="text-sm sm:text-base font-medium">{link.name}</span>
-                      </a>
-                    );
-                  })}
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                    {socialLinks.map((link, index) => {
+                      const Icon = link.icon;
+                      return (
+                        <a
+                          key={link.name}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`contact-link flex items-center space-x-2 px-4 py-2 rounded-lg bg-gray-50 dark:bg-dark-light hover:bg-primary hover:text-white transition-all duration-300 ${link.color} animate-fade-in group`}
+                          style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                          <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                          <span className="text-sm sm:text-base font-medium">{link.name}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
-              <div className="card p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center md:text-left">Location</h3>
-                <div className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span className="text-sm sm:text-base">Patna, Bihar, India</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="card p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-center md:text-left">Contact Information</h3>
-              <div className="space-y-6">
-                <div className="contact-item group">
-                  <h4 className="font-medium text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-1">Email</h4>
-                  <a href="mailto:deepankarsingh1@gmail.com" className="flex items-center space-x-3 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span className="text-sm sm:text-base">deepankarsingh1@gmail.com</span>
-                  </a>
-                </div>
-
-                <div className="contact-item group">
-                  <h4 className="font-medium text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-1">Phone</h4>
-                  <a href="tel:+917479519946" className="flex items-center space-x-3 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <span className="text-sm sm:text-base">+91 7479519946</span>
-                  </a>
-                </div>
-
-                <div className="contact-item group">
-                  <h4 className="font-medium text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-1">Address</h4>
-                  <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+              <div className="card p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-bl-full opacity-50"></div>
+                <div className="relative z-10">
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center md:text-left flex items-center">
+                    <span className="icon-container w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </span>
+                    Location
+                  </h3>
+                  <div className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     <span className="text-sm sm:text-base">Patna, Bihar, India</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-bl-full opacity-50"></div>
+              <div className="relative z-10">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-center md:text-left flex items-center">
+                  <span className="icon-container w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  Contact Information
+                </h3>
+                <div className="space-y-6">
+                  <div className="contact-item group">
+                    <h4 className="font-medium text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-1">Email</h4>
+                    <a href="mailto:deepankarsingh1@gmail.com" className="flex items-center space-x-3 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm sm:text-base">deepankarsingh1@gmail.com</span>
+                    </a>
+                  </div>
+
+                  <div className="contact-item group">
+                    <h4 className="font-medium text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-1">Phone</h4>
+                    <a href="tel:+917479519946" className="flex items-center space-x-3 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <span className="text-sm sm:text-base">+91 7479519946</span>
+                    </a>
+                  </div>
+
+                  <div className="contact-item group">
+                    <h4 className="font-medium text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-1">Address</h4>
+                    <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span className="text-sm sm:text-base">Patna, Bihar, India</span>
+                    </div>
                   </div>
                 </div>
               </div>
