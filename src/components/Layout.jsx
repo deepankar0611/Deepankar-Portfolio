@@ -69,7 +69,7 @@ export default function Layout({ children }) {
                 {isDark ? (
                   <SunIcon className="w-5 h-5" />
                 ) : (
-                  <MoonIcon className="w-5 h-5" />
+                  <MoonIcon className="w-5 h-5 text-white" />
                 )}
               </button>
             </div>
